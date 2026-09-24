@@ -1,0 +1,90 @@
+/* =============================================================================
+   La Juntada - Estilos y Tokens de Diseño Sincronizados con Flutter
+   ============================================================================= */
+
+:root {
+  /* Identidad visual de la app Flutter (ThemeData) */
+  --color-primary: #B71C1C;         /* Rojo brasas */
+  --color-primary-light: #E53935;
+  --color-primary-dark: #7F0000;
+  
+  --color-accent: #E65100;          /* Naranja fuego */
+  --color-accent-light: #FF8A50;
+  --color-accent-dark: #AC1900;
+  
+  --color-bg-light: #FAF7F2;        /* Crema / Quincho cálido */
+  --color-surface-light: #FFFFFF;
+  --color-surface-variant: #F5EFE6;
+  
+  --color-text-main: #1C1B1B;
+  --color-text-muted: #4A4541;
+  --color-text-light: #7E6E65;
+
+  --color-bg-dark: #1A1512;
+  --color-surface-dark: #251E1A;
+  --color-surface-variant-dark: #3A2E28;
+
+  --color-success: #2E7D32;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  overflow-x: hidden;
+}
+
+/* Efectos de fondo y degradados con temática de brasas */
+.bg-ember-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(230, 81, 0, 0.12) 0%, rgba(183, 28, 28, 0.05) 45%, transparent 70%);
+}
+
+.text-gradient-fire {
+  background: linear-gradient(135deg, #B71C1C 0%, #E65100 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-primary {
+  box-shadow: 0 10px 30px -10px rgba(183, 28, 28, 0.35);
+}
+
+.glow-accent {
+  box-shadow: 0 10px 30px -10px rgba(230, 81, 0, 0.35);
+}
+
+/* Teléfono Mockup Styling */
+.phone-mockup {
+  border: 10px solid #1C1B1B;
+  border-radius: 44px;
+  box-shadow: 0 25px 50px -12px rgba(26, 21, 18, 0.25), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.phone-notch {
+  width: 90px;
+  height: 20px;
+  background-color: #1C1B1B;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Animaciones suaves */
+@keyframes floatAnimation {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: floatAnimation 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 5s ease-in-out infinite;
+}

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Primary -->
+  <title>La Juntada | Registrá gastos, truco y juntadas con tus amigos</title>
+  <meta name="title" content="La Juntada | Registrá gastos, truco y juntadas con tus amigos">
+  <meta name="description" content="La app definitiva para organizar tus grupos, dividir los gastos del asado y llevar el tanteador de truco sin discusiones. Descargala gratis para iOS y Android.">
+  <meta name="keywords" content="asado, truco, amigos, division de gastos, anotador de truco, app argentina, juntadas, appwrite, flutter">
+  <meta name="author" content="La Juntada">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lajuntada.app/">
+  <meta property="og:title" content="La Juntada — Menos vueltas, más juntadas reales">
+  <meta property="og:description" content="Organizá tus grupos, dividí los gastos del asado y anotá el truco sin discusiones. Descargala gratis.">
+  <meta property="og:image" content="assets/images/app_icon.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="La Juntada | Registrá gastos, truco y juntadas con tus amigos">
+  <meta property="twitter:description" content="La app para que organizar juntadas vuelva a ser simple.">
+  <meta property="twitter:image" content="assets/images/app_icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/app_icon_256.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#B71C1C',
+              primaryLight: '#E53935',
+              primaryDark: '#7F0000',
+              accent: '#E65100',
+              accentLight: '#FF8A50',
+              accentDark: '#AC1900',
+              cream: '#FAF7F2',
+              creamVariant: '#F5EFE6',
+              darkBg: '#1A1512',
+              darkSurface: '#251E1A',
+              darkBorder: '#3A2E28'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-[#FAF7F2] text-[#1C1B1B] antialiased">
+
+  <!-- ========================================================================= -->
+  <!-- NAVBAR STICKY                                                             -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-[#FAF7F2]/85 backdrop-blur-md border-b border-[#E8DED8]/80 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo y Nombre -->
+        <a href="#inicio" class="flex items-center gap-3 group">
+          <img src="assets/images/app_icon_256.png" alt="Icono La Juntada" class="w-11 h-11 rounded-2xl shadow-md group-hover:scale-105 transition-transform duration-200">
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold tracking-tight text-[#B71C1C] leading-none">La Juntada</span>
+            <span class="text-[11px] font-semibold tracking-wider uppercase text-[#E65100]">Gastos • Truco • Amigos</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-[#4A4541]">
+          <a href="#de-que-se-trata" class="hover:text-[#B71C1C] transition-colors">¿De qué se trata?</a>
+          <a href="#features" class="hover:text-[#B71C1C] transition-colors">Funcionalidades</a>
+          <a href="#sponsors" class="hover:text-[#B71C1C] transition-colors">Sponsors & Marcas</a>
+          <a href="#faq" class="hover:text-[#B71C1C] transition-colors">Preguntas Frecuentes</a>
+        </nav>
+
+        <!-- CTA Header -->
+        <div class="hidden md:flex items-center gap-4">
+          <a href="#descargar" class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#B71C1C] to-[#E65100] shadow-md hover:shadow-lg hover:brightness-105 transition-all">
+            Descargar Gratis
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex md:hidden">
+          <button id="mobile-menu-btn" type="button" aria-expanded="false" class="p-2 rounded-xl text-[#4A4541] hover:text-[#B71C1C] hover:bg-[#F5EFE6] transition-colors" aria-label="Abrir menú">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-[#E8DED8] px-4 pt-3 pb-6 space-y-3 shadow-lg">
+      <a href="#de-que-se-trata" class="block py-2 text-base font-semibold text-[#4A4541] hover:text-[#B71C1C]">¿De qué se trata?</a>
+      <a href="#features" class="block py-2 text-base font-semibold text-[#4A4541] hover:text-[#B71C1C]">Funcionalidades</a>
+      <a href="#sponsors" class="block py-2 text-base font-semibold text-[#4A4541] hover:text-[#B71C1C]">Sponsors & Marcas</a>
+      <a href="#faq" class="block py-2 text-base font-semibold text-[#4A4541] hover:text-[#B71C1C]">Preguntas Frecuentes</a>
+      <div class="pt-2">
+        <a href="#descargar" class="block text-center w-full py-3 rounded-xl font-bold text-white bg-gradient-to-r from-[#B71C1C] to-[#E65100] shadow">
+          Descargar Gratis
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- HERO SECTION                                                              -->
+  <!-- ========================================================================= -->
+  <section id="inicio" class="relative pt-12 pb-20 md:pt-20 md:pb-32 bg-ember-gradient overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Column: Copy & Actions -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F5EFE6] border border-[#E8DED8] text-xs md:text-sm font-bold text-[#E65100]">
+            <span>🔥</span>
+            <span>La app para el asado, los amigos y el truco</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#1C1B1B] leading-[1.12]">
+            Menos vueltas en el grupo, <br class="hidden sm:inline">
+            <span class="text-gradient-fire">más juntadas reales.</span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-[#4A4541] font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Organizá tus grupos, dividí los gastos del asado y llevá el tanteador del truco sin discusiones. Todo en una sola app, rápida, intuitiva y hecha para disfrutar.
+          </p>
+
+          <!-- Download Badges / Buttons -->
+          <div id="descargar" class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            
+            <!-- Google Play Store Badge (Placeholder link) -->
+            <a href="#descargar" class="w-full sm:w-auto inline-flex items-center gap-3.5 px-6 py-3.5 rounded-2xl bg-[#1C1B1B] text-white hover:bg-black transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5">
+              <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.428V3.242c0-.54.225-1.03.61-1.428zm11.235 11.238l2.25 2.25-12.04 6.84 9.79-9.09zm0-2.104l-9.79-9.09 12.04 6.84-2.25 2.25zm1.467 1.052l2.977 1.692a1.47 1.47 0 0 1 0 2.548l-2.977 1.692-2.146-2.146 2.146-1.786z"/>
+              </svg>
+              <div class="text-left">
+                <span class="block text-[10px] tracking-wider uppercase text-gray-400 font-semibold leading-none">Disponible en</span>
+                <span class="text-base font-bold text-white tracking-tight leading-tight">Google Play</span>
+              </div>
+            </a>
+
+            <!-- Apple App Store Badge (Placeholder link) -->
+            <a href="#descargar" class="w-full sm:w-auto inline-flex items-center gap-3.5 px-6 py-3.5 rounded-2xl bg-[#1C1B1B] text-white hover:bg-black transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5">
+              <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.35-.58.66-1.08 1.73-.95 2.76 1.01.08 2.05-.51 2.68-1.26z"/>
+              </svg>
+              <div class="text-left">
+                <span class="block text-[10px] tracking-wider uppercase text-gray-400 font-semibold leading-none">Descargar en</span>
+                <span class="text-base font-bold text-white tracking-tight leading-tight">App Store</span>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- Social proof micro-note -->
+          <div class="pt-2 flex items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-[#7E6E65]">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#2E7D32]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+              100% Gratuita
+            </span>
+            <span>•</span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#2E7D32]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+              Funciona sin internet
+            </span>
+            <span>•</span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#2E7D32]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+              Sin publicidad molesta
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Phone Mockup -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-[320px] animate-float">
+            
+            <!-- Glow detrás del mockup -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-[#B71C1C]/25 to-[#E65100]/25 rounded-[50px] blur-2xl -z-10 animate-pulse-glow"></div>
+
+            <!-- Marco del teléfono -->
+            <div class="phone-mockup bg-[#FAF7F2] overflow-hidden">
+              
+              <!-- Notch superior -->
+              <div class="flex justify-center">
+                <div class="phone-notch"></div>
+              </div>
+
+              <!-- App Header simulado -->
+              <div class="bg-[#B71C1C] px-5 pt-3 pb-5 text-white">
+                <div class="flex items-center justify-between text-xs opacity-90 mb-1">
+                  <span>Viernes 21:30 hs</span>
+                  <span class="px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-bold">En curso 🔥</span>
+                </div>
+                <h3 class="text-lg font-bold">Asado en lo de Santi</h3>
+                <p class="text-xs text-white/80">Grupo: Los del Fútbol de los Jueves</p>
+              </div>
+
+              <!-- App Content Body -->
+              <div class="p-4 space-y-3.5 text-xs">
+                
+                <!-- Tarjeta de Gastos / Balance -->
+                <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-[#E8DED8]">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-bold text-[#1C1B1B]">Balance de Gastos</span>
+                    <span class="text-xs font-bold text-[#B71C1C]">$48.500 total</span>
+                  </div>
+                  <div class="space-y-1.5 text-[11px] text-[#4A4541]">
+                    <div class="flex justify-between items-center">
+                      <span>🥩 Santi pagó la carne:</span>
+                      <span class="font-semibold text-[#1C1B1B]">$32.000</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span>🍺 Nico pagó bebidas:</span>
+                      <span class="font-semibold text-[#1C1B1B]">$16.500</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-dashed border-[#E8DED8] flex justify-between font-bold text-[#2E7D32]">
+                      <span>Tu saldo pendiente:</span>
+                      <span>Debés $6.060</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tanteador de Truco en vivo -->
+                <div class="bg-[#1A1512] rounded-2xl p-3.5 text-white shadow-sm border border-[#3A2E28]">
+                  <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-sm">🃏</span>
+                      <span class="font-bold text-[11px] text-[#FF8A50]">Truco a 30 puntos</span>
+                    </div>
+                    <span class="text-[10px] text-gray-400">Las Malas</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2 text-center py-1">
+                    <div class="bg-[#251E1A] p-2 rounded-xl border border-[#3A2E28]">
+                      <span class="block text-[10px] text-gray-400 font-semibold">Ellos</span>
+                      <span class="text-2xl font-black text-white">14</span>
+                    </div>
+                    <div class="bg-[#B71C1C] p-2 rounded-xl border border-[#E53935]">
+                      <span class="block text-[10px] text-white/80 font-semibold">Nosotros</span>
+                      <span class="text-2xl font-black text-white">18</span>
+                    </div>
+                  </div>
+                  <div class="mt-2 text-center text-[10px] text-amber-300 font-medium">
+                    ¡Quiero retruco! • Santi cantó Envido (31)
+                  </div>
+                </div>
+
+                <!-- Participantes confirmados -->
+                <div class="flex items-center justify-between px-1 text-[11px] text-[#7E6E65]">
+                  <span>8 amigos confirmados</span>
+                  <div class="flex -space-x-1.5">
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#B71C1C] text-white font-bold text-[9px]">S</span>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#E65100] text-white font-bold text-[9px]">N</span>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#2E7D32] text-white font-bold text-[9px]">V</span>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-600 text-white font-bold text-[9px]">+5</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN: PROBLEMA VS SOLUCIÓN                                             -->
+  <!-- ========================================================================= -->
+  <section id="de-que-se-trata" class="py-20 bg-white border-y border-[#E8DED8]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase font-extrabold tracking-widest text-[#E65100] mb-2">¿Por qué nace La Juntada?</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-[#1C1B1B]">
+          El fin de los chats interminables y las cuentas en servilletas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Tarjeta: El caos tradicional -->
+        <div class="bg-[#FAF7F2] rounded-3xl p-8 border border-red-200 relative overflow-hidden flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center text-2xl">
+              ❌
+            </div>
+            <h3 class="text-xl font-bold text-[#1C1B1B]">Organizar por WhatsApp:</h3>
+            <ul class="space-y-3 text-sm text-[#4A4541]">
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-500 font-bold">•</span>
+                <span>200 mensajes en el grupo y nadie confirma si va o no.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-500 font-bold">•</span>
+                <span>Alguien paga el asado, otro las bebidas y nadie sabe quién le debe a quién.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-500 font-bold">•</span>
+                <span>Terminan jugando al truco anotando con una birome que no anda en una servilleta rota.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-500 font-bold">•</span>
+                <span>Tres se olvidan de transferir y el que puso la tarjeta termina absorbiendo la deuda.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-red-100 text-xs font-semibold text-red-700">
+            Resultado: Estrés, discusiones y cuentas que nunca cierran.
+          </div>
+        </div>
+
+        <!-- Tarjeta: Con La Juntada -->
+        <div class="bg-gradient-to-br from-[#FAF7F2] to-amber-50/60 rounded-3xl p-8 border-2 border-[#E65100]/40 shadow-sm relative overflow-hidden flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-2xl">
+              ✅
+            </div>
+            <h3 class="text-xl font-bold text-[#1C1B1B]">Con La Juntada:</h3>
+            <ul class="space-y-3 text-sm text-[#4A4541]">
+              <li class="flex items-start gap-2.5">
+                <span class="text-green-600 font-bold">•</span>
+                <span>Creás la juntada en 3 clics y sabés la lista exacta de amigos presentes.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-green-600 font-bold">•</span>
+                <span>Cargás los gastos con su comprobante y la app liquida los saldos automáticamente.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-green-600 font-bold">•</span>
+                <span>Anotador de truco oficial en tu celular con historial, buenas, malas y revanchas.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-green-600 font-bold">•</span>
+                <span>Copia y pega de Alias / CVU directo para saldar al instante.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-amber-200 text-xs font-bold text-[#E65100]">
+            Resultado: Cuentas claras, amigos contentos y más asados.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN: FUNCIONALIDADES                                                  -->
+  <!-- ========================================================================= -->
+  <section id="features" class="py-20 md:py-28 bg-[#FAF7F2]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <h2 class="text-xs uppercase font-extrabold tracking-widest text-[#B71C1C]">Funcionalidades Clave</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-[#1C1B1B]">
+          Todo lo que necesitás para tus encuentros en una sola app.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Feature 1: División de Gastos -->
+        <div class="bg-white rounded-3xl p-8 border border-[#E8DED8] shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 rounded-2xl bg-red-50 text-[#B71C1C] flex items-center justify-center text-3xl mb-6">
+            🥩
+          </div>
+          <h3 class="text-xl font-bold text-[#1C1B1B] mb-2.5">División de Gastos y Balances</h3>
+          <p class="text-sm text-[#4A4541] leading-relaxed">
+            Cargá los tickets del asado, las bebidas o el alquiler de la cancha. La app calcula el mínimo número de transferencias para que todos queden en cero sin dolor de cabeza.
+          </p>
+        </div>
+
+        <!-- Feature 2: Anotador de Truco -->
+        <div class="bg-white rounded-3xl p-8 border border-[#E8DED8] shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 text-[#E65100] flex items-center justify-center text-3xl mb-6">
+            🃏
+          </div>
+          <h3 class="text-xl font-bold text-[#1C1B1B] mb-2.5">Tanteador de Truco Argentino</h3>
+          <p class="text-sm text-[#4A4541] leading-relaxed">
+            Anotador digital intuitivo para partidos a 15 o 30 puntos. Registro de envido, truco, faltas y estadísticas históricas para saber quién es el verdadero campeón de la mesa.
+          </p>
+        </div>
+
+        <!-- Feature 3: Grupos & Offline First -->
+        <div class="bg-white rounded-3xl p-8 border border-[#E8DED8] shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-[#2E7D32] flex items-center justify-center text-3xl mb-6">
+            📱
+          </div>
+          <h3 class="text-xl font-bold text-[#1C1B1B] mb-2.5">Grupos Fijos & 100% Offline</h3>
+          <p class="text-sm text-[#4A4541] leading-relaxed">
+            ¿Están en una quinta o campo sin señal? La app funciona de forma local en tu teléfono sin requerir internet. Al volver a tener señal se sincroniza automáticamente en la nube.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN: SPONSORS & MARCAS ALIADAS (B2B)                                   -->
+  <!-- ========================================================================= -->
+  <section id="sponsors" class="py-20 md:py-28 bg-[#1A1512] text-white relative overflow-hidden">
+    
+    <!-- Glow ambiental oscuro -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#B71C1C]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-[#E65100]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#3A2E28] border border-white/10 text-xs font-bold text-[#FF8A50]">
+          💼 Alianzas Comerciales
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          Sumá tu marca al momento más esperado de la semana.
+        </h2>
+        <p class="text-base sm:text-lg text-gray-300">
+          La Juntada conecta a marcas de consumo masivo, bebidas, carnes, gastronomía y entretenimiento con miles de grupos de amigos en el momento exacto en que planifican y compran.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Razones para Sponsors -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[#251E1A] border border-[#3A2E28] flex items-center justify-center text-xl shrink-0">
+              🎯
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white mb-1">Audiencia Real y Segmentada</h4>
+              <p class="text-sm text-gray-400">Jóvenes y adultos que se reúnen semanalmente para asados, previas, partidos de fútbol y celebraciones.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[#251E1A] border border-[#3A2E28] flex items-center justify-center text-xl shrink-0">
+              🛒
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white mb-1">Momento de Decisión de Compra</h4>
+              <p class="text-sm text-gray-400">Visibilidad de marca en las listas de gastos y compras antes de ir al supermercado o carnicería.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[#251E1A] border border-[#3A2E28] flex items-center justify-center text-xl shrink-0">
+              🤝
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white mb-1">Alianzas a Medida</h4>
+              <p class="text-sm text-gray-400">Beneficios exclusivos, cupones de descuento, patrocinio de torneos de truco o banners destacados.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Contacto Directo (Cero formularios, máxima conversión) -->
+        <div class="lg:col-span-6">
+          <div class="bg-[#251E1A] rounded-3xl p-8 border border-[#3A2E28] shadow-2xl relative">
+            
+            <h3 class="text-2xl font-extrabold text-white mb-2">Hablemos de negocios</h3>
+            <p class="text-sm text-gray-400 mb-6">
+              Sin formularios burocráticos ni esperas. Ponete en contacto directo con el equipo fundador:
+            </p>
+
+            <div class="space-y-4">
+              
+              <!-- WhatsApp Button -->
+              <a href="https://wa.me/5491100000000?text=Hola%20equipo%20de%20La%20Juntada!%20Me%20contacto%20porque%20nos%20interesa%20sumarnos%20como%20sponsors." target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full p-4 rounded-2xl bg-[#25D366] text-black font-bold hover:bg-[#20ba59] transition-all shadow-md group">
+                <div class="flex items-center gap-3">
+                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.541 1.761.817 2.796.817 3.182 0 5.768-2.587 5.768-5.766.001-3.182-2.585-5.77-5.768-5.77zm0-2.172c4.418 0 8 3.582 8 8 0 1.503-.418 2.91-1.144 4.116l1.144 4.184-4.283-1.122c-1.127.606-2.427.922-3.717.922-4.418 0-8-3.582-8-8 0-4.418 3.582-8 8-8zm4.35 11.234c-.18.497-.91.954-1.472 1.01-.527.052-1.199.079-3.411-.837-2.617-1.083-4.281-3.754-4.412-3.928-.13-.175-1.059-1.409-1.059-2.687 0-1.278.67-1.907.91-2.155.24-.249.52-.311.693-.311.173 0 .347.001.498.009.16.008.375-.061.586.446.219.527.747 1.821.814 1.954.067.133.111.289.022.466-.089.178-.133.289-.267.444-.133.155-.281.347-.401.466-.133.133-.272.278-.117.544.156.267.691 1.138 1.482 1.841 1.018.906 1.874 1.187 2.141 1.32.267.133.423.111.579-.067.155-.178.667-.777.845-1.044.178-.267.356-.222.601-.133.245.089 1.558.734 1.825.867.267.133.445.2.512.311.067.111.067.644-.113 1.141z"/>
+                  </svg>
+                  <span>Escribinos por WhatsApp</span>
+                </div>
+                <span class="text-xs bg-black/10 px-2.5 py-1 rounded-lg font-bold group-hover:translate-x-1 transition-transform">
+                  Chat directo →
+                </span>
+              </a>
+
+              <!-- Email Directo con Copiado -->
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-[#1A1512] border border-[#3A2E28]">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <div class="w-8 h-8 rounded-lg bg-[#3A2E28] flex items-center justify-center text-sm">
+                    ✉️
+                  </div>
+                  <div class="truncate">
+                    <span class="block text-[11px] text-gray-400 uppercase font-semibold">Email para sponsors</span>
+                    <a href="mailto:sponsors@lajuntada.app" id="sponsor-email-text" class="text-sm font-bold text-white hover:text-[#FF8A50] transition-colors truncate">
+                      sponsors@lajuntada.app
+                    </a>
+                  </div>
+                </div>
+                <button id="copy-email-btn" type="button" class="shrink-0 px-3 py-1.5 rounded-xl bg-[#3A2E28] hover:bg-[#4A3B34] text-xs font-semibold text-white transition-colors" title="Copiar email">
+                  Copiar
+                </button>
+              </div>
+
+              <!-- Feedback visual al copiar -->
+              <div id="copy-feedback" class="opacity-0 pointer-events-none text-center text-xs font-bold text-[#25D366] transition-opacity duration-300">
+                ¡Email copiado al portapapeles!
+              </div>
+
+              <!-- Teléfono comercial -->
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-[#1A1512] border border-[#3A2E28]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-[#3A2E28] flex items-center justify-center text-sm">
+                    📞
+                  </div>
+                  <div>
+                    <span class="block text-[11px] text-gray-400 uppercase font-semibold">Teléfono Comercial</span>
+                    <a href="tel:+5491100000000" class="text-sm font-bold text-white hover:text-[#FF8A50] transition-colors">
+                      +54 9 11 0000-0000 <span class="text-xs text-gray-500 font-normal">(Placeholder)</span>
+                    </a>
+                  </div>
+                </div>
+                <a href="tel:+5491100000000" class="shrink-0 px-3 py-1.5 rounded-xl bg-[#3A2E28] hover:bg-[#4A3B34] text-xs font-semibold text-white transition-colors">
+                  Llamar
+                </a>
+              </div>
+
+            </div>
+
+            <div class="mt-6 text-center text-[11px] text-gray-500">
+              * Respondemos habitualmente en menos de 24 horas hábiles.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN: PREGUNTAS FRECUENTES (FAQ ACCORDION)                             -->
+  <!-- ========================================================================= -->
+  <section id="faq" class="py-20 md:py-28 bg-[#FAF7F2]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <h2 class="text-xs uppercase font-extrabold tracking-widest text-[#B71C1C]">Dudas Habituales</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-[#1C1B1B]">
+          Preguntas Frecuentes
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item bg-white rounded-2xl border border-[#E8DED8] overflow-hidden shadow-sm">
+          <button type="button" class="faq-toggle flex items-center justify-between w-full p-6 text-left font-bold text-base md:text-lg text-[#1C1B1B] hover:text-[#B71C1C] transition-colors">
+            <span>¿La aplicación es realmente gratuita?</span>
+            <svg class="faq-icon w-5 h-5 text-[#7E6E65] transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-[#4A4541] leading-relaxed border-t border-[#FAF7F2] pt-4">
+            Sí, descargar y usar La Juntada para crear grupos, dividir gastos de juntadas y usar el anotador de truco es 100% gratuito.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item bg-white rounded-2xl border border-[#E8DED8] overflow-hidden shadow-sm">
+          <button type="button" class="faq-toggle flex items-center justify-between w-full p-6 text-left font-bold text-base md:text-lg text-[#1C1B1B] hover:text-[#B71C1C] transition-colors">
+            <span>¿Qué pasa si en el lugar de la juntada no tenemos señal de internet?</span>
+            <svg class="faq-icon w-5 h-5 text-[#7E6E65] transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-[#4A4541] leading-relaxed border-t border-[#FAF7F2] pt-4">
+            No te preocupes. La app está construida con arquitectura offline-first. Podés anotar los puntos del truco y cargar todos los gastos sin conexión. Apenas tu teléfono vuelva a conectarse a Wi-Fi o datos móviles, los cambios se sincronizarán solos.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item bg-white rounded-2xl border border-[#E8DED8] overflow-hidden shadow-sm">
+          <button type="button" class="faq-toggle flex items-center justify-between w-full p-6 text-left font-bold text-base md:text-lg text-[#1C1B1B] hover:text-[#B71C1C] transition-colors">
+            <span>¿La app transfiere dinero o cobra comisiones?</span>
+            <svg class="faq-icon w-5 h-5 text-[#7E6E65] transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-[#4A4541] leading-relaxed border-t border-[#FAF7F2] pt-4">
+            No. La Juntada no es una billetera virtual ni retiene dinero. La app calcula matemáticamente quién le debe a quién para minimizar la cantidad de pagos necesarios, y te permite copiar el Alias o CVU para que hagas la transferencia directamente desde tu banco o billetera habitual.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item bg-white rounded-2xl border border-[#E8DED8] overflow-hidden shadow-sm">
+          <button type="button" class="faq-toggle flex items-center justify-between w-full p-6 text-left font-bold text-base md:text-lg text-[#1C1B1B] hover:text-[#B71C1C] transition-colors">
+            <span>¿Está disponible tanto para Android como para iOS?</span>
+            <svg class="faq-icon w-5 h-5 text-[#7E6E65] transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-[#4A4541] leading-relaxed border-t border-[#FAF7F2] pt-4">
+            Sí, La Juntada está desarrollada con tecnología Flutter para ofrecer exactamente la misma experiencia fluida y rápida tanto en dispositivos Android (Google Play) como en iPhone (Apple App Store).
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- BANNER FINAL CTA                                                          -->
+  <!-- ========================================================================= -->
+  <section class="py-16 bg-gradient-to-r from-[#B71C1C] via-[#7F0000] to-[#E65100] text-white text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl sm:text-4xl font-black mb-4">¿Listo para tu próxima juntada?</h2>
+      <p class="text-base sm:text-lg text-white/90 mb-8 max-w-xl mx-auto">
+        Descargá la app hoy mismo y empezá a disfrutar de tus reuniones sin vueltas ni cuentas enredadas.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#descargar" class="px-8 py-3.5 rounded-2xl bg-white text-[#B71C1C] font-extrabold hover:bg-gray-100 transition-all shadow-lg hover:scale-105">
+          Descargar Gratis
+        </a>
+        <a href="#sponsors" class="px-8 py-3.5 rounded-2xl bg-black/20 hover:bg-black/30 border border-white/20 text-white font-bold transition-all">
+          Contactar para Alianzas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white border-t border-[#E8DED8] py-12 text-sm text-[#4A4541]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Brand & Slogan -->
+        <div class="flex items-center gap-3">
+          <img src="assets/images/app_icon_256.png" alt="Logo La Juntada" class="w-9 h-9 rounded-xl shadow-sm">
+          <div>
+            <span class="text-lg font-extrabold text-[#B71C1C]">La Juntada</span>
+            <p class="text-xs text-[#7E6E65]">Hecho con pasión por el asado y los amigos.</p>
+          </div>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="flex items-center gap-6 text-xs font-semibold text-[#7E6E65]">
+          <a href="privacidad.html" class="hover:text-[#B71C1C] transition-colors">Política de Privacidad</a>
+          <span>•</span>
+          <a href="terminos.html" class="hover:text-[#B71C1C] transition-colors">Términos y Condiciones</a>
+          <span>•</span>
+          <a href="#sponsors" class="hover:text-[#B71C1C] transition-colors">Contacto Sponsors</a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-xs text-[#7E6E65]">
+          © 2026 La Juntada. Todos los derechos reservados.
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

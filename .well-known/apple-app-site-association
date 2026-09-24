@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAMID.io.outlined.lajuntada",
+        "paths": ["/juntadas/*", "/truco/*", "/invite/*"]
+      }
+    ]
+  }
+}
