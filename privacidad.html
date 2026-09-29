@@ -47,9 +47,9 @@
           <h2 class="text-xl font-bold text-[#1C1B1B] mb-3">2. Información que Recopilamos</h2>
           <p class="mb-2">Para el correcto funcionamiento de las características de la Aplicación, podemos recopilar:</p>
           <ul class="list-disc pl-6 space-y-1">
-            <li><strong>Datos de Cuenta:</strong> Nombre, dirección de correo electrónico y contraseña encriptada al registrarte.</li>
-            <li><strong>Datos de Juntadas y Gastos:</strong> Nombres de los eventos, listas de participantes, importes monetarios de gastos y comprobantes subidos por los usuarios para la liquidación.</li>
-            <li><strong>Datos de Partidas de Truco:</strong> Nombres de equipos, puntajes, faltas y estadísticas de juego.</li>
+            <li><strong>Datos de Cuenta y Perfil:</strong> Nombre o apodo, dirección de correo electrónico, contraseña encriptada, imagen de perfil o avatar (opcional) y Alias bancario / CBU (opcional, provisto voluntariamente por el usuario para facilitar que sus amigos le transfieran al saldar deudas).</li>
+            <li><strong>Datos de Juntadas y Gastos:</strong> Nombres de los eventos, listas de participantes, importes monetarios de gastos y notas o comprobantes adjuntos voluntariamente para la rendición de cuentas.</li>
+            <li><strong>Datos de Partidas de Truco:</strong> Nombres de equipos, puntajes, faltas, historial de rondas y estadísticas de juego.</li>
             <li><strong>Almacenamiento Local (Offline-first):</strong> Los datos se almacenan en una base de datos local en tu dispositivo móvil para permitir el uso sin conexión a internet y se sincronizan de forma segura con nuestros servidores cuando hay conexión.</li>
           </ul>
         </section>
@@ -57,7 +57,7 @@
         <section>
           <h2 class="text-xl font-bold text-[#1C1B1B] mb-3">3. Almacenamiento y Seguridad de Datos</h2>
           <p>
-            Los servicios de backend y sincronización en la nube son provistos a través de la infraestructura segura de <strong>Appwrite Cloud</strong>. La información en tránsito está protegida mediante encriptación TLS/HTTPS y los datos sensibles en reposo cumplen con rigurosos estándares de seguridad informática.
+            Los servicios de backend y sincronización en la nube son provistos a través de la infraestructura segura de <strong>Appwrite Cloud</strong> en conjunto con la red de distribución y protección de <strong>Cloudflare</strong> bajo nuestro dominio oficial. La información en tránsito está protegida mediante encriptación TLS/HTTPS y los datos sensibles en reposo cumplen con rigurosos estándares de seguridad informática y control de acceso.
           </p>
         </section>
 
@@ -78,9 +78,20 @@
         </section>
 
         <section>
-          <h2 class="text-xl font-bold text-[#1C1B1B] mb-3">5. Derechos del Usuario y Eliminación de Datos</h2>
+          <h2 class="text-xl font-bold text-[#1C1B1B] mb-3">5. Derechos del Usuario y Eliminación de Cuenta y Datos</h2>
+          <p class="mb-3">
+            Tienes derecho a acceder, rectificar o solicitar la eliminación definitiva de tu cuenta y todos los datos asociados en cualquier momento, a través de dos mecanismos:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 mb-3">
+            <li>
+              <strong>Desde la Aplicación:</strong> Ingresa en la sección de <em>Ajustes / Perfil &gt; Eliminar Cuenta</em> y confirma la acción. Tu sesión se cerrará y se iniciará el borrado irreversible de tus credenciales y datos personales.
+            </li>
+            <li>
+              <strong>Por Vía Web o Correo Electrónico (sin necesidad de tener la app instalada):</strong> Puedes enviar un correo a <a href="mailto:soporte@lajuntada.app" class="text-[#B71C1C] underline font-medium">soporte@lajuntada.app</a> desde la dirección de email con la que te registraste, indicando en el asunto "Solicitud de Eliminación de Cuenta".
+            </li>
+          </ul>
           <p>
-            Tienes derecho a acceder, corregir o solicitar la eliminación definitiva de tu cuenta y todos los datos asociados en cualquier momento desde la sección de Ajustes dentro de la aplicación o enviando un correo a <a href="mailto:soporte@lajuntada.app" class="text-[#B71C1C] underline font-medium">soporte@lajuntada.app</a>.
+            Una vez procesada la solicitud, tus credenciales de acceso, perfil, avatar y datos privados serán eliminados definitivamente de nuestros servidores activos en un plazo máximo de 30 días. Los registros históricos agregados en grupos compartidos (por ejemplo, liquidaciones cerradas en las que participaste) conservarán únicamente valores matemáticos anónimos para no alterar el balance de los demás integrantes.
           </p>
         </section>
 
