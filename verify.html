@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Primary -->
+  <title>Verificación de Correo | La Juntada</title>
+  <meta name="title" content="Verificación de Correo | La Juntada">
+  <meta name="description" content="Confirmá tu dirección de correo electrónico para proteger tu cuenta de La Juntada.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/app_icon_256.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#B71C1C',
+              primaryLight: '#E53935',
+              primaryDark: '#7F0000',
+              accent: '#E65100',
+              accentLight: '#FF8A50',
+              cream: '#FAF7F2',
+              creamVariant: '#F5EFE6',
+              darkBg: '#1A1512',
+              darkSurface: '#251E1A',
+              darkBorder: '#3A2E28'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-[#FAF7F2] text-[#1C1B1B] antialiased min-h-screen flex flex-col justify-between selection:bg-[#B71C1C]/15 selection:text-[#B71C1C]">
+
+  <!-- Header / Navbar -->
+  <header class="w-full bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#E8DED8]/80 py-4">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <a href="./" class="flex items-center gap-3 group">
+        <img src="assets/images/app_icon_256.png" alt="Icono La Juntada" class="w-10 h-10 rounded-2xl shadow-md group-hover:scale-105 transition-transform duration-200">
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-[#B71C1C] leading-none">La Juntada</span>
+          <span class="text-[10px] font-semibold tracking-wider uppercase text-[#E65100]">Gastos • Truco • Amigos</span>
+        </div>
+      </a>
+      <a href="./" class="text-xs sm:text-sm font-semibold text-[#4A4541] hover:text-[#B71C1C] transition-colors">
+        Volver a la web
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Card -->
+  <main class="flex-grow flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-lg bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-[#E8DED8] text-center relative overflow-hidden transition-all duration-300">
+      
+      <!-- Top Decorative Bar -->
+      <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#B71C1C] via-[#E53935] to-[#E65100]"></div>
+
+      <!-- State: Loading -->
+      <div id="state-loading" class="flex flex-col items-center">
+        <div class="w-20 h-20 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 mb-6 shadow-sm">
+          <svg class="animate-spin w-10 h-10 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+        <h1 class="text-2xl font-black text-[#1C1B1B] mb-3">Verificando tu correo...</h1>
+        <p class="text-sm text-[#4A4541] leading-relaxed max-w-sm">
+          Estamos confirmando tu cuenta con los servidores de La Juntada. Esto tomará sólo unos segundos.
+        </p>
+      </div>
+
+      <!-- State: Success -->
+      <div id="state-success" class="hidden flex flex-col items-center">
+        <div class="w-20 h-20 rounded-2xl bg-green-50 border border-green-200 flex items-center justify-center text-green-600 mb-6 shadow-sm">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-100 text-green-800 mb-3">
+          Cuenta Verificada
+        </span>
+        <h1 class="text-2xl font-black text-[#1C1B1B] mb-3">¡Listo! Tu correo está verificado</h1>
+        <p class="text-sm text-[#4A4541] leading-relaxed max-w-sm mb-8">
+          Tu cuenta ya está completamente validada. Ahora vas a poder recuperarla fácilmente y vincularte con amigos cuando te agreguen por correo.
+        </p>
+        
+        <div class="w-full flex flex-col sm:flex-row gap-3">
+          <a id="btn-open-app" href="lajuntada://verify" class="flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#B71C1C] to-[#E65100] shadow-md hover:shadow-lg hover:brightness-105 transition-all">
+            Abrir La Juntada
+          </a>
+          <a href="./" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-sm text-[#4A4541] bg-[#F5EFE6] hover:bg-[#E8DED8] transition-all">
+            Ir al inicio
+          </a>
+        </div>
+      </div>
+
+      <!-- State: Error -->
+      <div id="state-error" class="hidden flex flex-col items-center">
+        <div class="w-20 h-20 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-center text-[#B71C1C] mb-6 shadow-sm">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-[#B71C1C] mb-3">
+          Aviso
+        </span>
+        <h1 class="text-2xl font-black text-[#1C1B1B] mb-3">No se pudo verificar</h1>
+        <p id="error-message" class="text-sm text-[#4A4541] leading-relaxed max-w-sm mb-8">
+          El enlace ha expirado o ya fue utilizado previamente.
+        </p>
+
+        <div class="w-full flex flex-col sm:flex-row gap-3">
+          <a href="lajuntada://verify" class="flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#B71C1C] to-[#E65100] shadow-md hover:shadow-lg hover:brightness-105 transition-all">
+            Abrir la App
+          </a>
+          <a href="./" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-sm text-[#4A4541] bg-[#F5EFE6] hover:bg-[#E8DED8] transition-all">
+            Ir al inicio
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-[#E8DED8] py-6 text-center text-xs text-[#7E6E65]">
+    <div class="max-w-4xl mx-auto px-4">
+      <p>© 2026 La Juntada. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Script de Verificación con Appwrite Cloud -->
+  <script>
+    (async function() {
+      const stateLoading = document.getElementById('state-loading');
+      const stateSuccess = document.getElementById('state-success');
+      const stateError = document.getElementById('state-error');
+      const errorMessage = document.getElementById('error-message');
+      const btnOpenApp = document.getElementById('btn-open-app');
+
+      function showSuccess(userId, secret) {
+        stateLoading.classList.add('hidden');
+        stateError.classList.add('hidden');
+        stateSuccess.classList.remove('hidden');
+        if (userId && secret) {
+          btnOpenApp.href = `lajuntada://verify?userId=${encodeURIComponent(userId)}&secret=${encodeURIComponent(secret)}`;
+        }
+      }
+
+      function showError(msg) {
+        stateLoading.classList.add('hidden');
+        stateSuccess.classList.add('hidden');
+        stateError.classList.remove('hidden');
+        if (msg) errorMessage.textContent = msg;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get('userId');
+      const secret = params.get('secret');
+
+      if (!userId || !secret) {
+        showError('El enlace no contiene los parámetros necesarios para verificar tu cuenta. Abrí el correo recibido en tu celular o solicitá uno nuevo desde tu perfil en la app.');
+        return;
+      }
+
+      // Endpoints configurados para el backend de La Juntada en Appwrite Cloud
+      const PROJECT_ID = '6ab13dc90015a242cf3c';
+      const endpoints = [
+        'https://api.lajuntada.app/v1',
+        'https://fra.cloud.appwrite.io/v1',
+        'https://cloud.appwrite.io/v1'
+      ];
+
+      let completed = false;
+      let lastServerMessage = null;
+
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(`${endpoint}/account/verification`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Appwrite-Project': PROJECT_ID
+            },
+            body: JSON.stringify({ userId, secret })
+          });
+
+          if (response.ok) {
+            completed = true;
+            showSuccess(userId, secret);
+            break;
+          }
+
+          const data = await response.json().catch(() => ({}));
+          lastServerMessage = data.message || null;
+
+          if (response.status === 400 || response.status === 401 || response.status === 404) {
+            completed = true;
+            showError('El enlace de verificación ya fue utilizado o ha expirado. Podés solicitar un nuevo correo desde la sección de Perfil en la app.');
+            break;
+          }
+        } catch (netErr) {
+          console.warn(`Fallo al conectar con ${endpoint}:`, netErr);
+        }
+      }
+
+      if (!completed) {
+        showError(lastServerMessage || 'No se pudo completar la verificación en este momento. Por favor intentá abrir el enlace nuevamente o solicitá un nuevo correo desde la app.');
+      }
+    })();
+  </script>
+
+</body>
+</html>
