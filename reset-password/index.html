@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Primary -->
+  <title>Restablecer Contraseña | La Juntada</title>
+  <meta name="title" content="Restablecer Contraseña | La Juntada">
+  <meta name="description" content="Creá una nueva contraseña para tu cuenta de La Juntada.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/app_icon_256.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#B71C1C',
+              primaryLight: '#E53935',
+              primaryDark: '#7F0000',
+              accent: '#E65100',
+              accentLight: '#FF8A50',
+              cream: '#FAF7F2',
+              creamVariant: '#F5EFE6',
+              darkBg: '#1A1512',
+              darkSurface: '#251E1A',
+              darkBorder: '#3A2E28'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="bg-[#FAF7F2] text-[#1C1B1B] antialiased min-h-screen flex flex-col justify-between selection:bg-[#B71C1C]/15 selection:text-[#B71C1C]">
+
+  <!-- Header / Navbar -->
+  <header class="w-full bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#E8DED8]/80 py-4">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <a href="../" class="flex items-center gap-3 group">
+        <img src="../assets/images/app_icon_256.png" alt="Icono La Juntada" class="w-10 h-10 rounded-2xl shadow-md group-hover:scale-105 transition-transform duration-200">
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-[#B71C1C] leading-none">La Juntada</span>
+          <span class="text-[10px] font-semibold tracking-wider uppercase text-[#E65100]">Gastos • Truco • Amigos</span>
+        </div>
+      </a>
+      <a href="../" class="text-xs sm:text-sm font-semibold text-[#4A4541] hover:text-[#B71C1C] transition-colors">
+        Volver a la web
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Card -->
+  <main class="flex-grow flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-lg bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-[#E8DED8] text-center relative overflow-hidden transition-all duration-300">
+      
+      <!-- Top Decorative Bar -->
+      <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#B71C1C] via-[#E53935] to-[#E65100]"></div>
+
+      <!-- State: Form -->
+      <div id="state-form" class="flex flex-col items-center">
+        <div class="w-20 h-20 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-center text-[#B71C1C] mb-6 shadow-sm">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+          </svg>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-[#B71C1C] mb-3">
+          Seguridad
+        </span>
+        <h1 class="text-2xl font-black text-[#1C1B1B] mb-2">Restablecer Contraseña</h1>
+        <p class="text-sm text-[#4A4541] leading-relaxed max-w-sm mb-6">
+          Ingresá tu nueva clave para volver a acceder a tu cuenta en La Juntada.
+        </p>
+
+        <!-- Inline Error Banner -->
+        <div id="form-error" class="hidden w-full mb-5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-left flex items-start gap-3">
+          <svg class="w-5 h-5 text-[#B71C1C] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span id="form-error-text" class="text-xs text-[#B71C1C] font-semibold leading-relaxed"></span>
+        </div>
+
+        <form id="reset-form" class="w-full text-left flex flex-col gap-4">
+          <!-- Nueva Contraseña -->
+          <div>
+            <label for="password" class="block text-xs font-bold text-[#1C1B1B] uppercase tracking-wider mb-1.5">
+              Nueva contraseña
+            </label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required 
+                minlength="8" 
+                placeholder="Mínimo 8 caracteres"
+                class="w-full px-4 py-3 rounded-xl border border-[#E8DED8] focus:border-[#B71C1C] focus:ring-2 focus:ring-[#B71C1C]/20 outline-none text-sm transition-all pr-11"
+              >
+              <button 
+                type="button" 
+                id="toggle-password" 
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none p-1"
+                aria-label="Mostrar contraseña"
+              >
+                <svg id="eye-icon-pass" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.057-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Confirmar Contraseña -->
+          <div>
+            <label for="password-confirm" class="block text-xs font-bold text-[#1C1B1B] uppercase tracking-wider mb-1.5">
+              Confirmar contraseña
+            </label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="password-confirm" 
+                name="password-confirm" 
+                required 
+                minlength="8" 
+                placeholder="Repetí la contraseña"
+                class="w-full px-4 py-3 rounded-xl border border-[#E8DED8] focus:border-[#B71C1C] focus:ring-2 focus:ring-[#B71C1C]/20 outline-none text-sm transition-all pr-11"
+              >
+              <button 
+                type="button" 
+                id="toggle-confirm" 
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none p-1"
+                aria-label="Mostrar contraseña"
+              >
+                <svg id="eye-icon-confirm" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.057-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <p class="text-xs text-[#7E6E65] leading-relaxed">
+            La contraseña debe tener al menos 8 caracteres.
+          </p>
+
+          <button 
+            type="submit" 
+            id="btn-submit" 
+            class="w-full mt-2 inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#B71C1C] to-[#E65100] shadow-md hover:shadow-lg hover:brightness-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span id="btn-text">Cambiar Contraseña</span>
+            <svg id="btn-spinner" class="hidden animate-spin w-5 h-5 text-white ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- State: Success -->
+      <div id="state-success" class="hidden flex flex-col items-center">
+        <div class="w-20 h-20 rounded-2xl bg-green-50 border border-green-200 flex items-center justify-center text-green-600 mb-6 shadow-sm">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-100 text-green-800 mb-3">
+          Éxito
+        </span>
+        <h1 class="text-2xl font-black text-[#1C1B1B] mb-3">¡Contraseña actualizada! 🎉</h1>
+        <p class="text-sm text-[#4A4541] leading-relaxed max-w-sm mb-8">
+          Tu nueva contraseña ya está guardada. Podés abrir la app e iniciar sesión normalmente con tus nuevas credenciales.
+        </p>
+        
+        <div class="w-full flex flex-col sm:flex-row gap-3">
+          <a href="lajuntada://signin" class="flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#B71C1C] to-[#E65100] shadow-md hover:shadow-lg hover:brightness-105 transition-all">
+            Abrir La Juntada
+          </a>
+          <a href="../" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-sm text-[#4A4541] bg-[#F5EFE6] hover:bg-[#E8DED8] transition-all">
+            Ir al inicio
+          </a>
+        </div>
+      </div>
+
+      <!-- State: Error / Invalid Link -->
+      <div id="state-error" class="hidden flex flex-col items-center">
+        <div class="w-20 h-20 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-center text-[#B71C1C] mb-6 shadow-sm">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-[#B71C1C] mb-3">
+          Enlace Inválido
+        </span>
+        <h1 class="text-2xl font-black text-[#1C1B1B] mb-3">No se pudo restablecer</h1>
+        <p id="error-message" class="text-sm text-[#4A4541] leading-relaxed max-w-sm mb-8">
+          El enlace de recuperación ha expirado o ya fue utilizado previamente.
+        </p>
+
+        <div class="w-full flex flex-col sm:flex-row gap-3">
+          <a href="lajuntada://forgot-password" class="flex-1 inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#B71C1C] to-[#E65100] shadow-md hover:shadow-lg hover:brightness-105 transition-all">
+            Solicitar nuevo enlace
+          </a>
+          <a href="../" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-sm text-[#4A4541] bg-[#F5EFE6] hover:bg-[#E8DED8] transition-all">
+            Ir al inicio
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-[#E8DED8] py-6 text-center text-xs text-[#7E6E65]">
+    <div class="max-w-4xl mx-auto px-4">
+      <p>© 2026 La Juntada. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Script de Restablecimiento con Appwrite -->
+  <script>
+    (function() {
+      const stateForm = document.getElementById('state-form');
+      const stateSuccess = document.getElementById('state-success');
+      const stateError = document.getElementById('state-error');
+      const errorMessage = document.getElementById('error-message');
+      
+      const form = document.getElementById('reset-form');
+      const passwordInput = document.getElementById('password');
+      const confirmInput = document.getElementById('password-confirm');
+      const togglePass = document.getElementById('toggle-password');
+      const toggleConfirm = document.getElementById('toggle-confirm');
+      
+      const formError = document.getElementById('form-error');
+      const formErrorText = document.getElementById('form-error-text');
+      
+      const btnSubmit = document.getElementById('btn-submit');
+      const btnText = document.getElementById('btn-text');
+      const btnSpinner = document.getElementById('btn-spinner');
+
+      // Alternar visibilidad de contraseña
+      function setupToggle(button, input) {
+        button.addEventListener('click', () => {
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+          button.classList.toggle('text-[#B71C1C]', isPassword);
+        });
+      }
+      setupToggle(togglePass, passwordInput);
+      setupToggle(toggleConfirm, confirmInput);
+
+      function showFormError(msg) {
+        formErrorText.textContent = msg;
+        formError.classList.remove('hidden');
+      }
+
+      function hideFormError() {
+        formError.classList.add('hidden');
+      }
+
+      function showFatalError(msg) {
+        stateForm.classList.add('hidden');
+        stateSuccess.classList.add('hidden');
+        stateError.classList.remove('hidden');
+        if (msg) errorMessage.textContent = msg;
+      }
+
+      function showSuccess() {
+        stateForm.classList.add('hidden');
+        stateError.classList.add('hidden');
+        stateSuccess.classList.remove('hidden');
+      }
+
+      // Parámetros de Appwrite
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get('userId');
+      const secret = params.get('secret');
+
+      if (!userId || !secret) {
+        showFatalError('El enlace no contiene los parámetros requeridos para cambiar tu contraseña. Por favor solicitá un nuevo enlace desde la aplicación.');
+        return;
+      }
+
+      const PROJECT_ID = '6ab13dc90015a242cf3c';
+      const endpoints = [
+        'https://api.lajuntada.app/v1',
+        'https://fra.cloud.appwrite.io/v1',
+        'https://cloud.appwrite.io/v1'
+      ];
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideFormError();
+
+        const pass = passwordInput.value;
+        const confirm = confirmInput.value;
+
+        if (pass.length < 8) {
+          showFormError('La contraseña debe tener al menos 8 caracteres.');
+          return;
+        }
+
+        if (pass !== confirm) {
+          showFormError('Las contraseñas no coinciden. Por favor verificalas.');
+          return;
+        }
+
+        btnSubmit.disabled = true;
+        btnText.textContent = 'Actualizando...';
+        btnSpinner.classList.remove('hidden');
+
+        let completed = false;
+        let lastErrorMsg = null;
+
+        for (const endpoint of endpoints) {
+          try {
+            const response = await fetch(`${endpoint}/account/recovery`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Appwrite-Project': PROJECT_ID
+              },
+              body: JSON.stringify({
+                userId,
+                secret,
+                password: pass,
+                passwordAgain: pass
+              })
+            });
+
+            if (response.ok) {
+              completed = true;
+              showSuccess();
+              break;
+            }
+
+            const data = await response.json().catch(() => ({}));
+            lastErrorMsg = data.message || null;
+
+            // Si el token expiró o ya fue usado
+            if (response.status === 400 || response.status === 401 || response.status === 404) {
+              completed = true;
+              showFatalError('El enlace de recuperación ya fue utilizado o ha expirado. Por favor solicitá uno nuevo desde la app.');
+              break;
+            }
+          } catch (netErr) {
+            console.warn(`Error de conexión con ${endpoint}:`, netErr);
+          }
+        }
+
+        if (!completed) {
+          btnSubmit.disabled = false;
+          btnText.textContent = 'Cambiar Contraseña';
+          btnSpinner.classList.add('hidden');
+          showFormError(lastErrorMsg || 'No se pudo conectar con el servidor. Revisá tu conexión e intentá nuevamente.');
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
