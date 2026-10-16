@@ -20,6 +20,9 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -156,6 +159,9 @@
           <p class="text-xs text-[#7E6E65] leading-relaxed">
             La contraseña debe tener al menos 8 caracteres.
           </p>
+
+          <!-- Turnstile Widget -->
+          <div class="cf-turnstile my-2 flex justify-center" data-sitekey="0x4AAAAAAFYQbS2K79SqjPXd" data-theme="light"></div>
 
           <button 
             type="submit" 
@@ -319,6 +325,12 @@
           return;
         }
 
+        const turnstileToken = form.querySelector('[name="cf-turnstile-response"]')?.value;
+        if (window.turnstile && !turnstileToken) {
+          showFormError('Por favor completá la verificación de seguridad antes de continuar.');
+          return;
+        }
+
         btnSubmit.disabled = true;
         btnText.textContent = 'Actualizando...';
         btnSpinner.classList.remove('hidden');
@@ -363,6 +375,9 @@
         }
 
         if (!completed) {
+          if (window.turnstile) {
+            try { turnstile.reset(); } catch (_) {}
+          }
           btnSubmit.disabled = false;
           btnText.textContent = 'Cambiar Contraseña';
           btnSpinner.classList.add('hidden');
