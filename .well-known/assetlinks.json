@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "io.outlined.lajuntada",
+      "package_name": "com.lajuntada.la_juntada",
       "sha256_cert_fingerprints": [
         "BA:76:E1:AA:89:D3:20:E9:47:2D:95:92:5A:89:50:FA:2A:78:38:B8:AD:08:4A:0D:CF:51:54:2B:DD:3B:9E:E5"
       ]
